@@ -468,7 +468,9 @@ initialisePartitionTable (void)
 			lastPartition++;
 			Partition *p = partitionTable + i;
 
-			DISKread (uStart + uOffset + EBR_START, &ebr, sizeof (ebr));
+			vbprintf("EBR: PART i=%d", i);
+			DISKread (uStart + uOffset /* + EBR_START */, &ebr, sizeof (ebr));
+			vbprintf("EBR: signature 0x%04hX", ebr.signature);
 
 			if (ebr.signature != 0xaa55)
 				usageAndExit ("Invalid EBR signature found on image");
@@ -489,7 +491,7 @@ initialisePartitionTable (void)
 				break;
 			if (!PARTTYPE_IS_EXTENDED (ebr.chain.type))
 				usageAndExit ("Logical partition chain broken");
-			uOffset = (ebr.chain).offset;
+			uOffset = (off_t)((ebr.chain).offset) * BLOCKSIZE;
 		}
 	}
 //
