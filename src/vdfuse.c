@@ -277,7 +277,7 @@ main (int argc, char **argv)
 // *** Open the VDI, parse the MBR + EBRs and connect to the fuse service ***
 //
 
-	if (RT_FAILURE (VDInterfaceAdd (&vdError, "VD Error", VDINTERFACETYPE_ERROR, &vdErrorCallbacks, 0, &pVDifs)))
+	if (RT_FAILURE (VDInterfaceAdd (&vdError, "VD Error", VDINTERFACETYPE_ERROR, &vdErrorCallbacks, sizeof(vdErrorCallbacks), &pVDifs)))
 		usageAndExit ("invalid initialisation of VD interface");
 	if (RT_FAILURE (VDCreate (&vdError, VDTYPE_HDD, &hdDisk)))
 		usageAndExit ("invalid initialisation of VD interface");
