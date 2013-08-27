@@ -281,6 +281,7 @@ main (int argc, char **argv)
 		usageAndExit ("invalid initialisation of VD interface");
 	if (RT_FAILURE (VDCreate (&vdError, VDTYPE_HDD, &hdDisk)))
 		usageAndExit ("invalid initialisation of VD interface");
+	vbprintf ("Opening base image %s", imagefilename);
 	DISKopen (diskType, imagefilename);
 
 	for (i = 0; i < differencingLen; i++)
@@ -288,6 +289,7 @@ main (int argc, char **argv)
 		char *diffType;
 		char *diffFilename = differencing[i];
 		detectDiskType (&diffType, diffFilename);
+		vbprintf ("Opening Snapshot %s", diffFilename);
 		DISKopen (diffType, diffFilename);
 	}
 
@@ -350,7 +352,7 @@ usageAndExit (char *optFormat, ...)
      "\t-t\tspecify type (VDI, VMDK, VHD, or raw; default: auto)\n"
 #endif
      "\t-f\tVDimage file\n"
-     "\t-s\tdifferencing disk files\n"    // prevent misuse
+     "\t-s\tSnapshot file(s) to load on top of the image file\n"
      "\t-a\tallow all users to read disk\n"
      "\t-w\tallow all users to read and write to disk\n"
      "\t-g\trun in foreground\n"
