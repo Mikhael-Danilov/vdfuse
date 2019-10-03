@@ -91,7 +91,7 @@ void VD_destroy (void *u);
    if (RT_FAILURE(VDOpen(hdDisk,t , i, readonly ? VD_OPEN_FLAGS_READONLY : VD_OPEN_FLAGS_NORMAL, NULL))) \
       usageAndExit("opening vbox image failed");
 
-PVBOXHDD hdDisk;
+PVDISK hdDisk;
 PVDINTERFACE pVDifs = NULL;
 VDINTERFACE vdError;
 VDINTERFACEERROR vdErrorCallbacks = {
@@ -398,7 +398,7 @@ vdErrorCallback (void *pvUser UNUSED, int rc, const char *file,
 // simple (but up to a max 100 partitions :lol:).  Note than unlike partRead, this doesn't resort the
 // partitions.
 //
-//int VDRead(PVBOXHDD pDisk, uint64_t uOffset, void *pvBuf, size_t cbRead, int ii );
+//int VDRead(PVDISK pDisk, uint64_t uOffset, void *pvBuf, size_t cbRead, int ii );
 
 void
 initialisePartitionTable (void)
