@@ -91,7 +91,7 @@ void VD_destroy (void *u);
    if (RT_FAILURE(VDOpen(hdDisk,t , i, readonly ? VD_OPEN_FLAGS_READONLY : VD_OPEN_FLAGS_NORMAL, NULL))) \
       usageAndExit("opening vbox image failed");
 
-PVDISK hdDisk;
+PVBOXHDD hdDisk;
 PVDINTERFACE pVDifs = NULL;
 VDINTERFACE vdError;
 VDINTERFACEERROR vdErrorCallbacks = {
@@ -359,7 +359,7 @@ usageAndExit (char *optFormat, ...)
      "\t-v\tverbose\n"
      "\t-d\tdebug\n\n"
      "NOTE: \n"
-     "Linux: you must add the line \"user_allow_other\" (without quotes) to /etc/fuse.confand set proper permissions on /etc/fuse.conf\n"
+     "Linux: you must add the line \"user_allow_other\" (without quotes) to /etc/fuse.conf and set proper permissions on /etc/fuse.conf\n"
      "OSX: run with sudo for this to work.\n", processName);
     exit (1);
 }
